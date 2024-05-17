@@ -1,6 +1,7 @@
 import pygame
-from highway import Highway
 import time
+from highway import Highway
+from interior import Interior
 
 pygame.init()
 pygame.font.init()
@@ -15,7 +16,8 @@ start_time = time.time()
 highway_number = 1
 h = Highway(-20, 0, highway_number)
 h.rescale_image()
-
+i = Interior(200, 200)
+i.rescale_image()
 
 frame = 0
 run = True
@@ -50,6 +52,7 @@ while run:
 
     screen.fill((0, 0, 0))
     screen.blit(h.highway_image, h.rect)
+    screen.blit(i.interior_image, i.rect)
     pygame.display.update()
 
     frame += 1
