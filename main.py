@@ -16,8 +16,9 @@ start_time = time.time()
 highway_number = 1
 h = Highway(-20, 0, highway_number)
 h.rescale_image()
-i = Interior(200, 200)
+i = Interior(-50, 50)
 i.rescale_image()
+speed = 30 #mph
 
 frame = 0
 run = True
@@ -25,7 +26,7 @@ clock = pygame.time.Clock()
 
 # -------- Main Program Loop -----------
 while run:
-    clock.tick(60)  #60 fps
+    clock.tick(60)  #240 fps
     # --- Main event loop
     for event in pygame.event.get():  # User did something
         if event.type == pygame.QUIT:  # If user clicked close
@@ -40,9 +41,18 @@ while run:
         h.turn("left")
     print(h.x)
 
+
+    #accelarating
+    if keys[pygame.K_w]:
+        speed += 5
+    if keys[pygame.K_s]:
+        speed -= 5
+    speed_change_divisor = speed / 5
+    print(speed_change_divisor)
     time_elapsed = time.time() - start_time
     if highway_number == 5:
         highway_number = 1
+    print(frame)
     if frame % 1 == 0:
         h.rescale_image()
         h = Highway(h.x, 0, highway_number)
