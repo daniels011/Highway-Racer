@@ -2,10 +2,11 @@ import pygame
 import time
 from highway import Highway
 from interior import Interior
+from banana import Banana
 
 pygame.init()
 pygame.font.init()
-my_font = pygame.font.SysFont('Arial', 15)
+welcome_font = pygame.font.SysFont('montserrat', 150)
 pygame.display.set_caption("Highway Racer")
 
 # set up variables for the display
@@ -18,12 +19,15 @@ h = Highway(-20, 0, highway_number)
 h.rescale_image()
 i = Interior(-50, 50)
 i.rescale_image()
+b = Banana(900, 600)
+banana_size_scale = .1
+b.rescale_image(banana_size_scale)
 speed = 30 #mph
-
+start = True
 frame = 0
 run = True
 clock = pygame.time.Clock()
-
+s_image = pygame.image.load("startimage.jpg")
 # -------- Main Program Loop -----------
 while run:
     clock.tick(60)  #240 fps
@@ -52,17 +56,26 @@ while run:
     time_elapsed = time.time() - start_time
     if highway_number == 5:
         highway_number = 1
-    print(frame)
     if frame % 1 == 0:
         h.rescale_image()
         h = Highway(h.x, 0, highway_number)
         highway_number += 1
-
+        b.x *= .1
     h.rescale_image()
+    if frame % 5 == 0:
+        banana_size_scale += .2
+        b.rescale_image(banana_size_scale)
+        b.y += 1
+    if start1:
+        welcome = welcome_font.render("Welcome To Highway Racer!", True, (255, 255, 255))
+        screen.blit(welcome, (180, 500))
+        screen.blit(startimage)
+    else:
+        screen.fill((0, 0, 0))
+        screen.blit(h.highway_image, h.rect)
+        screen.blit(i.interior_image, i.rect)
+        screen.blit(b.banana_image, b.rect)
 
-    screen.fill((0, 0, 0))
-    screen.blit(h.highway_image, h.rect)
-    screen.blit(i.interior_image, i.rect)
     pygame.display.update()
 
     frame += 1
