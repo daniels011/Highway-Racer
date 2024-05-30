@@ -20,6 +20,8 @@ class Banana:
         if self.y < 500:
             self.y += 1
         self.size += 1
+        self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
+
 
 
 

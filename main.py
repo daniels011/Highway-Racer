@@ -19,7 +19,7 @@ h = Highway(-20, 0, highway_number)
 h.rescale_image()
 i = Interior(-50, 50)
 i.rescale_image()
-b = Banana(900, 600, .1)
+b = Banana(900, 500, .06)
 b.rescale_image()
 speed = 30 #mph
 start1 = True
@@ -27,14 +27,16 @@ frame = 0
 run = True
 clock = pygame.time.Clock()
 s_image = pygame.image.load("startimage.jpg")
+s_image_size = s_image.get_size()
+scale_size = (s_image_size[0] * 3, s_image_size[1] * 2.5)
+s_image = pygame.transform.scale(s_image, scale_size)
 
 
-# -------- Main Program Loop -----------
 while run:
-    clock.tick(60)  #240 fps
-    # --- Main event loop
-    for event in pygame.event.get():  # User did something
-        if event.type == pygame.QUIT:  # If user clicked close
+    clock.tick(60)  #60 fps
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             run = False
 
     keys = pygame.key.get_pressed()
@@ -65,15 +67,15 @@ while run:
         highway_number += 1
 
     h.rescale_image()
-    if frame % 5 == 0:
-        print(b.x)
-        b.x -= 5
-        b.rescale_image()
-        b.y += 1
+    #if frame % 5 == 0:
+        #b.move_banana()
+        #screen.blit(b.banana_image, b.rect)
+        #b.rescale_image()
     if start1:
         welcome = welcome_font.render("Welcome To Highway Racer!", True, (255, 255, 255))
-        screen.blit(welcome, (180, 500))
         screen.blit(s_image, (0, 0))
+        screen.blit(welcome, (180, 500))
+
     else:
         screen.fill((0, 0, 0))
         screen.blit(h.highway_image, h.rect)
