@@ -65,12 +65,12 @@ while run:
         h.rescale_image()
         h = Highway(h.x, 0, highway_number)
         highway_number += 1
-
+    print(b.image_size[0])
     h.rescale_image()
-    #if frame % 5 == 0:
-        #b.move_banana()
-        #screen.blit(b.banana_image, b.rect)
-        #b.rescale_image()
+    if frame % 5 == 0 and b.x < 901 and b.y < 900 and b.image_size[0] < 800:
+        b.move_banana()
+        screen.blit(b.banana_image, b.rect)
+        b.rescale_image()
     if start1:
         welcome = welcome_font.render("Welcome To Highway Racer!", True, (255, 255, 255))
         screen.blit(s_image, (0, 0))
