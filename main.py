@@ -19,7 +19,7 @@ h = Highway(-20, 0, highway_number)
 h.rescale_image()
 i = Interior(-50, 50)
 i.rescale_image()
-b = Banana(900, 500, .06)
+b = Banana(1000, 600)
 b.rescale_image()
 speed = 30 #mph
 start1 = True
@@ -65,12 +65,11 @@ while run:
         h.rescale_image()
         h = Highway(h.x, 0, highway_number)
         highway_number += 1
-    print(b.image_size[0])
     h.rescale_image()
-    if frame % 5 == 0 and b.x < 901 and b.y < 900 and b.image_size[0] < 800:
+    if frame % 10 == 0 and b.x < 1050 and b.y < 900 and b.image_size[0] < 800:
         b.move_banana()
         screen.blit(b.banana_image, b.rect)
-        b.rescale_image()
+
     if start1:
         welcome = welcome_font.render("Welcome To Highway Racer!", True, (255, 255, 255))
         screen.blit(s_image, (0, 0))
