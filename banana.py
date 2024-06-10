@@ -11,7 +11,7 @@ class Banana:
 
     def rescale_image(self):
         self.image_size = self.banana_image.get_size()
-        scale_size = (self.image_size[0] * .01, self.image_size[1] * .01)
+        scale_size = (self.image_size[0] * 5, self.image_size[1] * 5)
         self.banana_image = pygame.transform.scale(self.banana_image, scale_size)
 
     def move_banana(self):

@@ -17,9 +17,9 @@ start_time = time.time()
 highway_number = 1
 h = Highway(-20, 0, highway_number)
 h.rescale_image()
-i = Interior(-50, 50)
+i = Interior(-50, 100)
 i.rescale_image()
-b = Banana(1000, 600)
+b = Banana(500, 200)
 b.rescale_image()
 speed = 30 #mph
 start1 = True
