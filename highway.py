@@ -18,8 +18,8 @@ class Highway:
         self.highway_image = pygame.transform.scale(self.highway_image, scale_size)
 
     def turn(self, direction):
-        if self.x <= 30 and self.x >= -270:
-            if self.x == 30:
+        if self.x <= 230 and self.x >= -270:
+            if self.x == 230:
                 if direction == "right":
                     self.x -= self.turn_delta
             elif self.x == -270:
@@ -32,7 +32,7 @@ class Highway:
                     self.x -= self.turn_delta
 
 
-    #def speed_change(
+
 
 
 
